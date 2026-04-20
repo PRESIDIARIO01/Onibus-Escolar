@@ -1,1 +1,14 @@
+<h2>Bem-vindo, {{nome}}</h2>
 
+<button onclick="marcar('ida')">Ir para escola</button>
+<button onclick="marcar('volta')">Voltar</button>
+
+<script>
+function marcar(tipo){
+    fetch("/registrar", {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({nome:"{{nome}}", tipo})
+    }).then(()=>alert("Confirmado"))
+}
+</script>
