@@ -1,1 +1,30 @@
+<h2>Motorista 🚍</h2>
 
+<button onclick="limpar()">Limpar</button>
+
+<h3>IDA</h3>
+<ul id="ida"></ul>
+
+<h3>VOLTA</h3>
+<ul id="volta"></ul>
+
+<script>
+function carregar(){
+    fetch("/listar")
+    .then(r=>r.json())
+    .then(data=>{
+        document.getElementById("ida").innerHTML =
+            data.ida.map(n=>"<li>"+n+"</li>").join("")
+
+        document.getElementById("volta").innerHTML =
+            data.volta.map(n=>"<li>"+n+"</li>").join("")
+    })
+}
+
+function limpar(){
+    fetch("/limpar", {method:"POST"}).then(()=>carregar())
+}
+
+setInterval(carregar, 2000)
+carregar()
+</script>
