@@ -81,4 +81,5 @@ def limpar():
     con.close()
     return jsonify({"msg": "limpo"})
 
-app.run(host="0.0.0.0", port=5000)
+if __name__ == "__main__":
+    app.run()
